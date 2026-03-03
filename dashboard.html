@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Особистий кабінет - Signature Marketing</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <h1>Signature Marketing</h1>
+                </a>
+            </div>
+            <nav class="nav">
+                <a href="index.html">Головна</a>
+                <span id="userEmail" class="user-email"></span>
+                <button id="logoutBtn" class="btn-logout">Вийти</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Dashboard -->
+    <section class="dashboard">
+        <div class="container">
+            <!-- Sidebar Navigation -->
+            <aside class="dashboard-sidebar">
+                <div class="user-profile-card">
+                    <div class="user-avatar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <h3 id="userName">Користувач</h3>
+                    <p id="userTypeDisplay" class="user-type"></p>
+                </div>
+
+                <nav class="dashboard-nav">
+                    <!-- Business Navigation -->
+                    <div id="businessNav" class="nav-section" style="display: none;">
+                        <a href="#profile" class="nav-item active" data-section="profile">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span>Профіль</span>
+                        </a>
+                        <a href="#ads" class="nav-item" data-section="ads">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                            </svg>
+                            <span>Мої оголошення</span>
+                        </a>
+                        <a href="#create-ad" class="nav-item" data-section="create-ad">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                            <span>Створити оголошення</span>
+                        </a>
+                        <a href="#applications" class="nav-item" data-section="applications">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                            <span>Заявки блогерів</span>
+                        </a>
+                        <a href="#projects" class="nav-item" data-section="projects">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="9" y1="9" x2="15" y2="15"/>
+                                <line x1="15" y1="9" x2="9" y2="15"/>
+                            </svg>
+                            <span>Активні проекти</span>
+                        </a>
+                        <a href="#messages" class="nav-item" data-section="messages">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                            <span>Повідомлення</span>
+                        </a>
+                    </div>
+
+                    <!-- Blogger Navigation -->
+                    <div id="bloggerNav" class="nav-section" style="display: none;">
+                        <a href="#profile" class="nav-item active" data-section="profile">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span>Профіль</span>
+                        </a>
+                        <a href="#projects-list" class="nav-item" data-section="projects-list">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/>
+                                <path d="M21 21l-4.35-4.35"/>
+                            </svg>
+                            <span>Пошук проектів</span>
+                        </a>
+                        <a href="#my-applications" class="nav-item" data-section="my-applications">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                            </svg>
+                            <span>Мої заявки</span>
+                        </a>
+                        <a href="#my-projects" class="nav-item" data-section="my-projects">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                            </svg>
+                            <span>Мої проекти</span>
+                        </a>
+                        <a href="#portfolio" class="nav-item" data-section="portfolio">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21 15 16 10 5 21"/>
+                            </svg>
+                            <span>Портфоліо</span>
+                        </a>
+                        <a href="#messages" class="nav-item" data-section="messages">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                            <span>Повідомлення</span>
+                        </a>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="dashboard-content">
+                <!-- Profile Section -->
+                <section id="profile-section" class="dashboard-section active">
+                    <h2>Профіль</h2>
+                    <div class="profile-form">
+                        <div id="businessProfile" style="display: none;">
+                            <div class="form-group">
+                                <label>Назва компанії</label>
+                                <input type="text" id="businessNameInput" placeholder="Назва компанії">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="businessEmailInput" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Телефон</label>
+                                <input type="tel" id="businessPhoneInput" placeholder="+380 XX XXX XX XX">
+                            </div>
+                            <div class="form-group">
+                                <label>Опис бізнесу</label>
+                                <textarea id="businessDescriptionInput" rows="4" placeholder="Опишіть ваш бізнес"></textarea>
+                            </div>
+                        </div>
+                        <div id="bloggerProfile" style="display: none;">
+                            <div class="form-group">
+                                <label>Ім'я та прізвище</label>
+                                <input type="text" id="bloggerNameInput" placeholder="Ім'я та прізвище">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="bloggerEmailInput" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Телефон</label>
+                                <input type="tel" id="bloggerPhoneInput" placeholder="+380 XX XXX XX XX">
+                            </div>
+                            <div class="form-group">
+                                <label>Соціальні мережі</label>
+                                <input type="text" id="bloggerSocialInput" placeholder="Instagram, TikTok, YouTube">
+                            </div>
+                            <div class="form-group">
+                                <label>Про себе</label>
+                                <textarea id="bloggerBioInput" rows="4" placeholder="Розкажіть про себе"></textarea>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" id="saveProfileBtn">Зберегти зміни</button>
+                    </div>
+                </section>
+
+                <!-- Business: My Ads Section -->
+                <section id="ads-section" class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Мої оголошення</h2>
+                        <button class="btn btn-primary" onclick="showSection('create-ad')">+ Створити нове</button>
+                    </div>
+                    <div id="adsList" class="ads-grid">
+                        <p class="empty-state">У вас поки немає оголошень. Створіть перше оголошення!</p>
+                    </div>
+                </section>
+
+                <!-- Business: Create Ad Section -->
+                <section id="create-ad-section" class="dashboard-section">
+                    <h2>Створити проект (Job Posting)</h2>
+                    <form id="createAdForm" class="create-ad-form">
+                        <div class="form-group">
+                            <label>Назва проекту *</label>
+                            <input type="text" id="adTitle" required placeholder="Наприклад: Реклама дитячих іграшок в Instagram">
+                            <small>Опишіть коротко, що потрібно зробити</small>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Категорія *</label>
+                                <select id="adCategory" required>
+                                    <option value="">Оберіть категорію</option>
+                                    <option value="toys">Дитячі іграшки</option>
+                                    <option value="food">Їжа та ресторани</option>
+                                    <option value="fashion">Мода та одяг</option>
+                                    <option value="beauty">Краса та косметика</option>
+                                    <option value="tech">Технології</option>
+                                    <option value="services">Послуги</option>
+                                    <option value="other">Інше</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Тип проекту *</label>
+                                <select id="projectType" required>
+                                    <option value="fixed">Фіксована ціна</option>
+                                    <option value="hourly">Погодинна оплата</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Детальний опис проекту *</label>
+                            <textarea id="adDescription" rows="8" required placeholder="Детально опишіть проект: що потрібно зробити, які вимоги, очікуваний результат..."></textarea>
+                            <small>Чим детальніше опис, тим кращі заявки ви отримаєте</small>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label id="budgetLabel">Бюджет проекту (грн) *</label>
+                                <input type="number" id="adBudget" required min="0" placeholder="1000" step="100">
+                                <small id="budgetHint">Вкажіть максимальну суму, яку ви готові заплатити</small>
+                            </div>
+                            <div class="form-group">
+                                <label>Термін виконання (днів) *</label>
+                                <input type="number" id="adDeadline" required min="1" placeholder="7">
+                                <small>Скільки днів потрібно для виконання</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Навички/Вимоги до блогера</label>
+                            <div class="skills-input">
+                                <input type="text" id="skillInput" placeholder="Введіть навичку та натисніть Enter">
+                                <div id="skillsList" class="skills-list"></div>
+                            </div>
+                            <small>Наприклад: Instagram, TikTok, фото, відео, мода</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Формат контенту *</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="contentType" value="photo"> Фото</label>
+                                <label><input type="checkbox" name="contentType" value="video"> Відео</label>
+                                <label><input type="checkbox" name="contentType" value="story"> Stories</label>
+                                <label><input type="checkbox" name="contentType" value="post"> Пост</label>
+                                <label><input type="checkbox" name="contentType" value="reels"> Reels</label>
+                                <label><input type="checkbox" name="contentType" value="review"> Огляд/Review</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Додаткові вимоги та умови</label>
+                            <textarea id="adRequirements" rows="4" placeholder="Додаткові умови, вимоги до контенту, стиль, тощо"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Файли (опціонально)</label>
+                            <input type="file" id="adFiles" multiple accept="image/*,.pdf,.doc,.docx">
+                            <small>Можна додати референси, брендбук, приклади</small>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-large">Опублікувати проект</button>
+                    </form>
+                </section>
+
+                <!-- Business: Applications Section -->
+                <section id="applications-section" class="dashboard-section">
+                    <h2>Заявки блогерів</h2>
+                    <div id="applicationsList" class="applications-list">
+                        <p class="empty-state">Поки немає заявок від блогерів</p>
+                    </div>
+                </section>
+
+                <!-- Business: Projects Section -->
+                <section id="projects-section" class="dashboard-section">
+                    <h2>Активні проекти</h2>
+                    <div id="businessProjectsList" class="projects-list">
+                        <p class="empty-state">У вас поки немає активних проектів</p>
+                    </div>
+                </section>
+
+                <!-- Blogger: Projects List Section -->
+                <section id="projects-list-section" class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Доступні проекти</h2>
+                        <button class="btn btn-secondary" onclick="loadAvailableProjects()" title="Оновити список">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px; margin-right: 0.5rem;">
+                                <polyline points="23 4 23 10 17 10"/>
+                                <polyline points="1 20 1 14 7 14"/>
+                                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                            </svg>
+                            Оновити
+                        </button>
+                    </div>
+                    <div class="filters">
+                        <select id="filterCategory">
+                            <option value="">Всі категорії</option>
+                            <option value="toys">Дитячі іграшки</option>
+                            <option value="food">Їжа та ресторани</option>
+                            <option value="fashion">Мода та одяг</option>
+                            <option value="beauty">Краса та косметика</option>
+                            <option value="tech">Технології</option>
+                            <option value="services">Послуги</option>
+                            <option value="other">Інше</option>
+                        </select>
+                        <input type="number" id="filterBudgetMin" placeholder="Мін. бюджет">
+                        <input type="number" id="filterBudgetMax" placeholder="Макс. бюджет">
+                        <button class="btn btn-secondary" onclick="filterProjects()">Фільтрувати</button>
+                        <button class="btn btn-secondary" onclick="loadAvailableProjects()">Скинути фільтри</button>
+                    </div>
+                    <div id="availableProjectsList" class="projects-grid">
+                        <p class="empty-state">Завантаження проектів...</p>
+                    </div>
+                </section>
+
+                <!-- Blogger: My Applications Section -->
+                <section id="my-applications-section" class="dashboard-section">
+                    <h2>Мої заявки</h2>
+                    <div id="myApplicationsList" class="applications-list">
+                        <p class="empty-state">Ви ще не подали жодної заявки</p>
+                    </div>
+                </section>
+
+                <!-- Blogger: My Projects Section -->
+                <section id="my-projects-section" class="dashboard-section">
+                    <h2>Мої проекти</h2>
+                    <div class="projects-tabs">
+                        <button class="tab-btn active" onclick="filterMyProjects('all')">Всі</button>
+                        <button class="tab-btn" onclick="filterMyProjects('in-progress')">В роботі</button>
+                        <button class="tab-btn" onclick="filterMyProjects('review')">На перевірці</button>
+                        <button class="tab-btn" onclick="filterMyProjects('completed')">Завершені</button>
+                    </div>
+                    <div id="myProjectsList" class="projects-list">
+                        <p class="empty-state">У вас поки немає активних проектів</p>
+                    </div>
+                </section>
+
+                <!-- Blogger: Portfolio Section -->
+                <section id="portfolio-section" class="dashboard-section">
+                    <h2>Портфоліо</h2>
+                    <form id="portfolioForm" class="portfolio-form">
+                        <div class="form-group">
+                            <label>Додати посилання на роботу</label>
+                            <input type="url" id="portfolioLink" placeholder="https://instagram.com/p/...">
+                            <button type="button" class="btn btn-secondary" onclick="addPortfolioItem()">Додати</button>
+                        </div>
+                        <div id="portfolioItems" class="portfolio-items">
+                            <p class="empty-state">Додайте приклади ваших робіт</p>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Messages/Chat Section -->
+                <section id="messages-section" class="dashboard-section">
+                    <h2>Повідомлення</h2>
+                    <div class="chat-container">
+                        <div class="chat-sidebar">
+                            <div class="chat-search">
+                                <input type="text" id="chatSearch" placeholder="Пошук розмов...">
+                            </div>
+                            <div id="chatConversations" class="chat-conversations">
+                                <p class="empty-state">Немає активних розмов</p>
+                            </div>
+                        </div>
+                        <div class="chat-main">
+                            <div id="chatEmptyState" class="chat-empty-state">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                                </svg>
+                                <p>Оберіть розмову або почніть нову</p>
+                            </div>
+                            <div id="chatWindow" class="chat-window" style="display: none;">
+                                <div class="chat-header">
+                                    <div class="chat-user-info">
+                                        <div class="chat-user-avatar"></div>
+                                        <div>
+                                            <h3 id="chatUserName"></h3>
+                                            <p id="chatUserStatus" class="chat-status"></p>
+                                        </div>
+                                    </div>
+                                    <button class="btn-icon" onclick="closeChat()" title="Закрити">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <line x1="18" y1="6" x2="6" y2="18"/>
+                                            <line x1="6" y1="6" x2="18" y2="18"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div id="chatMessages" class="chat-messages"></div>
+                                <div class="chat-input-container">
+                                    <form id="chatMessageForm" class="chat-input-form">
+                                        <input type="text" id="chatMessageInput" placeholder="Введіть повідомлення..." autocomplete="off">
+                                        <button type="submit" class="btn btn-primary btn-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <line x1="22" y1="2" x2="11" y2="13"/>
+                                                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <!-- Proposal Modal (for bloggers) -->
+    <div id="proposalModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('proposalModal')">&times;</span>
+            <h2>Подати заявку на проект</h2>
+            <form id="proposalForm">
+                <input type="hidden" id="proposalAdId">
+                <div class="form-group">
+                    <label>Ваша пропозиція *</label>
+                    <textarea id="proposalMessage" rows="6" required placeholder="Опишіть ваш підхід до проекту, чому ви підходите, ваш досвід..."></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Ваша ціна (грн) *</label>
+                        <input type="number" id="proposalPrice" required min="0" step="100">
+                        <small>Сума, за яку ви готові виконати проект</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Термін виконання (днів) *</label>
+                        <input type="number" id="proposalDeadline" required min="1">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Додаткові матеріали (посилання)</label>
+                    <input type="url" id="proposalPortfolio" placeholder="Посилання на приклади робіт">
+                </div>
+                <button type="submit" class="btn btn-primary">Відправити заявку</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Project Details Modal -->
+    <div id="projectDetailsModal" class="modal">
+        <div class="modal-content large">
+            <span class="modal-close" onclick="closeModal('projectDetailsModal')">&times;</span>
+            <div id="projectDetailsContent"></div>
+        </div>
+    </div>
+
+    <!-- Deliver Work Modal (for bloggers) -->
+    <div id="deliverWorkModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('deliverWorkModal')">&times;</span>
+            <h2>Здати роботу</h2>
+            <form id="deliverWorkForm">
+                <input type="hidden" id="deliverProjectId">
+                <div class="form-group">
+                    <label>Опис виконаної роботи *</label>
+                    <textarea id="deliverDescription" rows="5" required placeholder="Опишіть, що було зроблено"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Посилання на контент *</label>
+                    <input type="url" id="deliverLink" required placeholder="https://instagram.com/p/...">
+                    <small>Додайте посилання на опублікований контент</small>
+                </div>
+                <div class="form-group">
+                    <label>Додаткові файли</label>
+                    <input type="file" id="deliverFiles" multiple accept="image/*,.pdf,.mp4">
+                </div>
+                <div class="form-group">
+                    <label>Примітки</label>
+                    <textarea id="deliverNotes" rows="3" placeholder="Додаткові примітки для клієнта"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Здати роботу</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Review Work Modal (for business) -->
+    <div id="reviewWorkModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('reviewWorkModal')">&times;</span>
+            <h2>Перевірити роботу</h2>
+            <div id="reviewWorkContent"></div>
+            <div class="review-actions">
+                <button class="btn btn-success" onclick="approveWork()">Прийняти роботу</button>
+                <button class="btn btn-warning" onclick="requestRevision()">Запросити доопрацювання</button>
+                <button class="btn btn-danger" onclick="rejectWork()">Відхилити</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    
+    <!-- Firebase Config -->
+    <script src="firebase-config.js"></script>
+    
+    <!-- Dashboard Script -->
+    <script src="dashboard.js"></script>
+</body>
+</html>
+
+
