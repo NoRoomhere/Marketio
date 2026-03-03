@@ -1,5 +1,6 @@
 # Marketio — Next.js 15 deploy on Netlify
 # https://docs.netlify.com/frameworks/next-js/
+# Next.js is auto-detected; optional plugin below.
 
 [build]
   command = "npm run build"
@@ -7,10 +8,4 @@
 
 [build.environment]
   NODE_VERSION = "20"
-
-# Next.js runtime
-[plugins]
-  [plugins.inputs]
-    # Enable Next.js plugin for SSR, ISR, middleware
-    next_runtime = "nodejs"
 
